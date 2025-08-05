@@ -88,26 +88,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Download button click handlers
-    const downloadButtons = document.querySelectorAll('.download-btn');
+    const downloadButtons = document.querySelectorAll(".download-btn");
     
     downloadButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener("click", function(e) {
             e.preventDefault();
             
             // Add click animation
-            this.style.transform = 'scale(0.95)';
+            this.style.transform = "scale(0.95)";
             setTimeout(() => {
-                this.style.transform = '';
+                this.style.transform = "";
             }, 150);
             
-            // Show download message (you can customize this)
-            const message = this.textContent.includes('Mac App Store') 
-                ? 'Mac App Store\'a yönlendiriliyorsunuz...' 
-                : 'İndirme başlatılıyor...';
-            
-            // You can add a toast notification here
-            console.log(message);
+            // Force download for DMG file
+            if (this.href.includes(".dmg")) {
+                const link = document.createElement("a");
+                link.href = this.href;
+                link.download = "Compressr_v1.0.0.dmg";
+                link.target = "_blank";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showToast("İndirme başlatılıyor...", "success");
+            } else {
+                // Show download message for other links
+                const message = this.textContent.includes("Mac App Store") 
+                    ? "Mac App Store'a yönlendiriliyorsunuz..." 
+                    : "İndirme başlatılıyor...";
+                
+                showToast(message, "info");
+            }
         });
+    });        });
     });
     
     // Support link handlers
