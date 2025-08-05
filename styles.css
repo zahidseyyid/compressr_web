@@ -605,3 +605,33 @@ html {
 .support-card {
     animation: fadeInUp 0.6s ease-out;
 }
+
+/* Installation Instructions */
+.installation-instructions {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.installation-instructions h3 {
+    color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.installation-instructions ol {
+    color: #475569;
+    line-height: 1.8;
+}
+
+.installation-instructions li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.installation-instructions li:last-child {
+    margin-bottom: 0;
+}
